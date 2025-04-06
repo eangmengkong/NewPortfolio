@@ -2,12 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Github, Twitter, Mail } from "lucide-react";
 import { FaTelegram } from "react-icons/fa";
+import { motion } from "framer-motion";
+
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section
@@ -67,12 +76,16 @@ const Hero: React.FC = () => {
               }`}
               style={{ transitionDelay: "500ms" }}
             >
-              <Button className="bg-teal hover:bg-dark-teal text-navy text-base py-6 px-8">
+              <Button 
+                className="bg-teal hover:bg-dark-teal text-navy text-base py-6 px-8"
+                onClick={() => scrollToSection('work')}
+              >
                 Check out my work
               </Button>
               <Button
                 variant="outline"
                 className="border-teal text-teal hover:text-teal text-base py-6 px-8"
+                onClick={() => scrollToSection('contact')}
               >
                 Contact me
               </Button>

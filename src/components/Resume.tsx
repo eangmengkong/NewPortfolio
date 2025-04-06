@@ -14,9 +14,9 @@ const Resume = () => {
   const education = [
     {
       degree: "Bachelor of Science in Computer Science",
-      school: "University of Technology",
-      year: "2020 - 2024",
-      description: "Specialized in Software Development and Web Technologies"
+      school: "ROYAL UNIVERSITY OF PHNOM PENH",
+      year: "2022 - Present",
+      description: "Specialized in Frontend Development and Technologies"
     }
   ];
 
@@ -25,7 +25,7 @@ const Resume = () => {
     {
       position: "Frontend Developer Intern",
       company: "Digital Creations",
-      period: "2021 - 2022",
+      period: "2023 - 2024",
       description: "Worked on UI/UX improvements and implemented responsive designs"
     }
   ];
