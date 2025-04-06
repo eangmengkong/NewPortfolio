@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Sun, Moon, Menu, X } from "lucide-react";
@@ -26,9 +25,11 @@ const Navigation: React.FC = () => {
 
   useEffect(() => {
     // Check system preference
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
     setDarkMode(prefersDark);
-    
+
     if (prefersDark) {
       document.documentElement.classList.add("dark");
     }
@@ -37,7 +38,7 @@ const Navigation: React.FC = () => {
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
     document.documentElement.classList.toggle("dark");
-    
+
     toast({
       title: darkMode ? "Light mode activated" : "Dark mode activated",
       duration: 1500,
@@ -63,7 +64,7 @@ const Navigation: React.FC = () => {
       <div className="container flex items-center justify-between">
         <a href="#home" className="flex items-center space-x-2">
           <span className="text-2xl font-bold text-navy dark:text-white">
-            Dev<span className="text-teal">Portfolio</span>
+            Mengkong<span className="text-teal">Portfolio</span>
           </span>
         </a>
 
@@ -87,7 +88,9 @@ const Navigation: React.FC = () => {
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
           </Button>
-          <Button className="bg-teal hover:bg-dark-teal text-navy">Resume</Button>
+          <Button className="bg-teal hover:bg-dark-teal text-navy">
+            Resume
+          </Button>
         </nav>
 
         {/* Mobile Menu Button */}

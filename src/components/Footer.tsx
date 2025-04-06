@@ -1,4 +1,3 @@
-
 import React from "react";
 
 const Footer: React.FC = () => {
@@ -7,40 +6,37 @@ const Footer: React.FC = () => {
       <div className="container">
         <div className="flex flex-col items-center">
           <div className="flex space-x-6 mb-4">
-            <a 
-              href="#home" 
+            <a
+              href="#home"
               className="text-slate hover:text-teal dark:text-light-slate dark:hover:text-teal transition-colors"
             >
               Home
             </a>
-            <a 
-              href="#about" 
+            <a
+              href="#about"
               className="text-slate hover:text-teal dark:text-light-slate dark:hover:text-teal transition-colors"
             >
               About
             </a>
-            <a 
-              href="#skills" 
+            <a
+              href="#skills"
               className="text-slate hover:text-teal dark:text-light-slate dark:hover:text-teal transition-colors"
             >
               Skills
             </a>
-            <a 
-              href="#projects" 
+            <a
+              href="#projects"
               className="text-slate hover:text-teal dark:text-light-slate dark:hover:text-teal transition-colors"
             >
               Projects
             </a>
-            <a 
-              href="#contact" 
+            <a
+              href="#contact"
               className="text-slate hover:text-teal dark:text-light-slate dark:hover:text-teal transition-colors"
             >
               Contact
             </a>
           </div>
-          <p className="text-sm">
-            Designed & Built by John Doe &copy; {new Date().getFullYear()}
-          </p>
         </div>
       </div>
     </footer>
