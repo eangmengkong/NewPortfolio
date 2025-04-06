@@ -1,72 +1,114 @@
-import React from "react";
-import { useInView } from "react-intersection-observer";
-import { Badge } from "@/components/ui/badge";
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { 
+  Code, 
+  Layout, 
+  Palette, 
+  Smartphone, 
+  Zap, 
+  GitBranch,
+  Package
+} from "lucide-react";
 
-interface Skill {
-  name: string;
-  level: number; // 1-5
-  category: "frontend" | "backend" | "tools" | "design";
-}
+const frontendSkills = [
+  {
+    category: "Core Technologies",
+    icon: <Code className="h-6 w-6 text-teal" />,
+    items: [
+      { name: "HTML5", level: "Advanced" },
+      { name: "CSS3", level: "Advanced" },
+      { name: "JavaScript", level: "Advanced" },
+      { name: "TypeScript", level: "Intermediate" }
+    ]
+  },
+  {
+    category: "Frameworks & Libraries",
+    icon: <Layout className="h-6 w-6 text-teal" />,
+    items: [
+      { name: "React", level: "Advanced" },
+      { name: "Next.js", level: "Intermediate" },
+      
+    ]
+  },
+  {
+    category: "Styling & Design",
+    icon: <Palette className="h-6 w-6 text-teal" />,
+    items: [
+      { name: "Tailwind CSS", level: "Advanced" },
+      { name: "CSS Modules", level: "Advanced" },
+      { name: "Styled Components", level: "Intermediate" },
+      { name: "Figma", level: "Basic" }
+    ]
+  },
 
-const Skills: React.FC = () => {
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  {
+    category: "Development Tools",
+    icon: <Package className="h-6 w-6 text-teal" />,
+    items: [
+      { name: "Git", level: "Intermediate" },
+      { name: "VS Code", level: "Advanced" },
+      { name: "Chrome DevTools", level: "Advanced" },
+     
+    ]
+  }
+];
 
-  const skills: Skill[] = [
-    // Frontend
-    { name: "HTML5", level: 5, category: "frontend" },
-    { name: "CSS3", level: 5, category: "frontend" },
-    { name: "JavaScript", level: 5, category: "frontend" },
-    { name: "TypeScript", level: 4, category: "frontend" },
-    { name: "React", level: 5, category: "frontend" },
-    { name: "Next.js", level: 4, category: "frontend" },
-    { name: "Tailwind CSS", level: 5, category: "frontend" },
-  ];
-
-  const categories = [{ id: "frontend", name: "Frontend" }];
-
+const Skills = () => {
   return (
-    <section id="skills" className="py-20">
-      <div className="container">
-        <h2 className="section-heading">Skills & Expertise</h2>
+    <section id="skills" className="py-20 bg-background">
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Frontend Skills & Expertise</h2>
+          <p className="text-muted-foreground">Technologies and tools I specialize in</p>
+        </div>
 
-        <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          {categories.map((category, idx) => (
-            <div
-              key={category.id}
-              className={`mb-12 transition-all duration-700 delay-${idx * 100}`}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {frontendSkills.map((skill, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
             >
-              <h3 className="text-xl font-semibold text-navy dark:text-lightest-slate mb-4 flex items-center">
-                <span className="text-teal mr-2">0{idx + 1}.</span>
-                {category.name}
-              </h3>
-
-              <div className="flex flex-wrap gap-2">
-                {skills
-                  .filter((skill) => skill.category === category.id)
-                  .sort((a, b) => b.level - a.level)
-                  .map((skill, skillIndex) => (
-                    <Badge
-                      key={skillIndex}
-                      className="skill-tag text-sm font-mono"
-                      variant="outline"
-                    >
-                      {skill.name}
-                      <span className="ml-1 text-slate dark:text-light-slate">
-                        {Array(skill.level).fill("•").join("")}
-                      </span>
-                    </Badge>
-                  ))}
-              </div>
-            </div>
+              <Card className="h-full hover:shadow-lg transition-all duration-300 group">
+                <CardHeader className="flex flex-row items-center gap-4">
+                  {skill.icon}
+                  <CardTitle>{skill.category}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-3">
+                    {skill.items.map((item, itemIndex) => (
+                      <motion.div
+                        key={itemIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.3, delay: itemIndex * 0.1 }}
+                        viewport={{ once: true }}
+                        className="flex items-center justify-between p-2 rounded-lg hover:bg-muted/50 transition-colors"
+                      >
+                        <span className="font-medium">{item.name}</span>
+                        <span className={`text-sm px-2 py-1 rounded-full ${
+                          item.level === 'Advanced' ? 'bg-teal/10 text-teal' :
+                          item.level === 'Intermediate' ? 'bg-blue-500/10 text-blue-500' :
+                          'bg-gray-500/10 text-gray-500'
+                        }`}>
+                          {item.level}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
+        </div>
+
+        <div className="mt-12 text-center">
+          <p className="text-muted-foreground">
+            Continuously learning and expanding my frontend development skills to create better user experiences
+          </p>
         </div>
       </div>
     </section>

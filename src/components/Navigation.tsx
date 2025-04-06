@@ -45,12 +45,22 @@ const Navigation: React.FC = () => {
     });
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    }
+  };
+
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "#home", id: "home" },
+    { name: "About", href: "#about", id: "about" },
+    { name: "Resume", href: "#resume", id: "resume" },
+    { name: "Skills", href: "#skills", id: "skills" },
+    { name: "Work", href: "#work", id: "work" },
+    { name: "Projects", href: "#projects", id: "projects" },
+    { name: "Contact", href: "#contact", id: "contact" },
   ];
 
   return (
@@ -71,14 +81,14 @@ const Navigation: React.FC = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link, index) => (
-            <a
+            <button
               key={link.name}
-              href={link.href}
+              onClick={() => scrollToSection(link.id)}
               className="nav-link font-medium"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               {link.name}
-            </a>
+            </button>
           ))}
           <Button
             variant="outline"
@@ -87,9 +97,6 @@ const Navigation: React.FC = () => {
             className="rounded-full"
           >
             {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-          </Button>
-          <Button className="bg-teal hover:bg-dark-teal text-navy">
-            Resume
           </Button>
         </nav>
 
@@ -118,18 +125,14 @@ const Navigation: React.FC = () => {
         <nav className="md:hidden bg-white dark:bg-navy py-4 px-6 shadow-lg animate-fade-in">
           <div className="flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className="nav-link text-lg font-medium py-2"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => scrollToSection(link.id)}
+                className="nav-link text-lg font-medium py-2 text-left"
               >
                 {link.name}
-              </a>
+              </button>
             ))}
-            <Button className="bg-teal hover:bg-dark-teal text-navy w-full mt-4">
-              Resume
-            </Button>
           </div>
         </nav>
       )}
