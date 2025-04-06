@@ -10,3 +10,5 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## Live Demo 🌍  
+🔗 [kongportfolio](https://kongportfolio.vercel.app/)
